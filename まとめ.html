@@ -137,5 +137,43 @@ int product(int X[], int Y[], int n) {
         }
 
         // 再帰的に計算
+
         int a = product(X2, Y2, half);
-        int b = product(X1, Y1, half
+        int b = product(X1, Y1, half);
+        int c = product(X1 + half, Y1 + half, half); // X1+X2, Y1+Y2
+
+        // 部分結果を組み合わせて返す
+        int result = a * (int)pow(10, n) + (b - (a + c)) * (int)pow(10, n/2) + c;
+
+        // 動的に確保されたメモリを解放
+        free(X1);
+        free(X2);
+        free(Y1);
+        free(Y2);
+
+        return result;
+    }
+}
+    </code></pre>
+</section>
+
+<section id="section3">
+    <h2>アルゴリズム7.3</h2>
+    <p></p>
+    <pre><code>
+// ここにコードを追加
+function exampleCode() {
+    console.log("Hello, World!");
+}
+    </code></pre>
+</section>
+
+<!-- 追加のセクションをここに追加 -->
+
+<footer>
+    <p>&copy; 2023 コードまとめ</p>
+</footer>
+
+</body>
+</html>
+

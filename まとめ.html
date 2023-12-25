@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コード一覧</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        section {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>コード一覧</h1>
+</header>
+
+<nav>
+    <a href="#section1">アルゴリズム7.1</a>
+    <a href="#section2">アルゴリズム7.2</a>
+    <a href="#section3">アルゴリズム7.3</a>
+    <!-- 追加のセクションをここに追加 -->
+</nav>
+
+<section id="section1">
+    <h2>アルゴリズム7.1</h2>
+    <p>通常の掛け算 計算量O(n^2)</p>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    // 配列のサイズnを定義
+    int n = 3; // 任意のサイズに変更してください
+
+    // ２つの配列 x[], y[] を定義
+    int X[] = {1, 2, 3}; // 仮のデータ、適宜変更してください
+    int Y[] = {4, 5, 6}; // 仮のデータ、適宜変更してください
+
+    int sum = 0;
+    int power = 1;
+
+    for (int i = 0; i &lt; n; i++) {
+        int s = 0;
+        int p = power; // 10の冪乗
+
+        for (int j = 0; j &lt; n; j++) {
+            s = s + p * X[i] * Y[j];
+            p = p * 10; //Yの桁上がり
+        }
+
+        sum = sum + s;
+        power = power * 10; //Xの桁上がり
+    }
+
+    // 計算結果を出力
+    printf("sum = %d\n", sum);
+
+    return 0;
+}
+    </code></pre>
+</section>
+
+<section id="section2">
+    <h2>アルゴリズム7.2</h2>
+    <p>分割統治法を用いた掛け算 時間計算量O(n^1.59)</p>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+// product関数の定義
+int product(int X[], int Y[], int n);
+
+int main() {
+    // 配列のサイズnを定義
+    int n = 4; // 任意のサイズに変更してください
+
+    // ２つの配列 X[], Y[] を定義
+    int X[] = {1, 2, 3, 4}; // 仮のデータ、適宜変更してください
+    int Y[] = {5, 6, 7, 8}; // 仮のデータ、適宜変更してください
+
+    // product関数を呼び出し、計算結果を出力
+    int result = product(X, Y, n);
+    printf("Product: %d\n", result);
+
+    return 0;
+}
+
+// product関数の定義
+int product(int X[], int Y[], int n) {
+    if (n == 1) {
+        // 配列のサイズが1の場合、単純な積を返す
+        return X[0] * Y[0];
+    } 
+    
+    else {
+        // 配列を半分に分割
+        int half = n / 2;
+
+        // 配列X, Yをそれぞれ半分ずつの2つの配列に分割
+        int* X1 = malloc(half * sizeof(int));
+        int* X2 = malloc(half * sizeof(int));
+        int* Y1 = malloc(half * sizeof(int));
+        int* Y2 = malloc(half * sizeof(int));
+
+        for (int i = 0; i &lt; half; i++) {
+            X1[i] = X[i];
+            X2[i] = X[i + half];
+            Y1[i] = Y[i];
+            Y2[i] = Y[i + half];
+        }
+
+        // 再帰的に計算
+        int a = product(X2, Y2, half);
+        int b = product(X1, Y1, half
